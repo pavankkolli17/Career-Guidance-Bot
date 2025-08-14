@@ -1,4 +1,3 @@
-
 import csv, os
 CAREER_FILE = os.path.join('data', 'careers.csv')
 
@@ -11,7 +10,6 @@ def _load(path, key='career'):
             reader = csv.DictReader(f)
             if not reader.fieldnames:
                 return None, 'CSV has no header row.'
-            # normalize
             for r in reader:
                 norm = { (k or '').strip().lower(): (v.strip() if isinstance(v, str) else v)
                          for k,v in r.items() }
@@ -41,7 +39,6 @@ def career_details(name_low):
     q = (name_low or '').strip().lower()
     for r in rows:
         if (r.get('career','').lower()) == q:
-            # WhatsApp-friendly bullets
             parts = []
             title = r.get('career')
             desc = r.get('description')

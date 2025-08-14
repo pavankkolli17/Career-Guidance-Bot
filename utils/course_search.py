@@ -1,4 +1,3 @@
-
 import csv, os
 COURSE_FILE = os.path.join('data', 'courses.csv')
 

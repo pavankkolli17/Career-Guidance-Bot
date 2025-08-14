@@ -1,4 +1,3 @@
-
 import os
 from flask import Flask, request, jsonify, render_template
 from openai import OpenAI
@@ -6,7 +5,6 @@ from openai import OpenAI
 from utils.career_search import list_careers, career_details
 from utils.course_search import list_courses, course_details
 
-# --- OpenAI client ---
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
@@ -45,52 +43,42 @@ def chat_api():
     data = request.get_json(silent=True) or {}
     text = (data.get("message") or "").strip()
     if not text:
-        return jsonify({"response": "Type 'career', 'course', or 'clarify: <your question>'."}), 400
+        return jsonify({"response": "Choose an option: Browse Careers, Browse Courses, or Clarify."}), 400
 
     low = text.lower()
 
-    # Clarify: either 'clarify: ...' or any message ending with '?'.
     if low.startswith("clarify:") or text.endswith("?"):
         q = text.split("clarify:", 1)[-1].strip() if low.startswith("clarify:") else text
         return jsonify({"response": clarify_with_openai(q)})
 
-    # Explore Careers
-    if low == "career" or low == "careers":
+    if low in ("career", "careers"):
         items, err = list_careers()
         if err:
             return jsonify({"response": f"Error loading careers: {err}"}), 500
         return jsonify({
-            "response": "Careers — click a name to view details, or type 'clarify: <question>'.",
+            "response": "Careers — click a name to view details, or press Clarify to ask a question.",
             "options": items
         })
 
-    # Explore Courses
-    if low == "course" or low == "courses":
+    if low in ("course", "courses"):
         items, err = list_courses()
         if err:
             return jsonify({"response": f"Error loading courses: {err}"}), 500
         return jsonify({
-            "response": "Courses — click a name to view details, or type 'clarify: <question>'.",
+            "response": "Courses — click a name to view details, or press Clarify to ask a question.",
             "options": items
         })
 
-    # Try exact career match
     det, err = career_details(low)
     if not err and det and det != "Career not found.":
         return jsonify({"response": det})
 
-    # Try exact course match
     det2, err2 = course_details(low)
     if not err2 and det2 and det2 != "Course not found.":
         return jsonify({"response": det2})
 
-    # Fallback to clarify (generic question)
-    if " " in text or "?" in text:
-        return jsonify({"response": clarify_with_openai(text)})
+    return jsonify({"response": "Not sure yet. Use the buttons above, or type 'clarify: <your question>'."})
 
-    return jsonify({"response": "Not sure yet. Type 'career', 'course', or 'clarify: <question>'."})
-
-# ---- Twilio WhatsApp webhook ----
 try:
     from twilio.twiml.messaging_response import MessagingResponse
     TWILIO = True
@@ -99,7 +87,6 @@ except Exception:
 
 @app.route("/twilio", methods=["POST"])
 def twilio_webhook():
-    from_number = request.form.get("From", "unknown")
     body = (request.form.get("Body") or "").strip()
     low = body.lower()
 
@@ -110,36 +97,31 @@ def twilio_webhook():
             return str(r), 200, {"Content-Type": "application/xml"}
         return txt, 200, {"Content-Type": "text/plain"}
 
-    # Clarify
     if low.startswith("clarify:") or body.endswith("?"):
         q = body.split("clarify:", 1)[-1].strip() if low.startswith("clarify:") else body
         return reply(clarify_with_openai(q))
 
-    # List careers/courses
     if low in ("career", "careers"):
         items, err = list_careers()
-        if err:
-            return reply(f"Error loading careers: {err}")
+        if err: return reply(f"Error loading careers: {err}")
         head = "Careers (reply with the exact name):"
         listing = "\n".join(f"- {c}" for c in items[:30])
         return reply(f"{head}\n{listing}\n\nOr ask: clarify: <your question>")
+
     if low in ("course", "courses"):
         items, err = list_courses()
-        if err:
-            return reply(f"Error loading courses: {err}")
+        if err: return reply(f"Error loading courses: {err}")
         head = "Courses (reply with the exact name):"
         listing = "\n".join(f"- {c}" for c in items[:30])
         return reply(f"{head}\n{listing}\n\nOr ask: clarify: <your question>")
 
-    # Try exact details
     det, err = career_details(low)
     if not err and det and det != "Career not found.":
         return reply(det)
     det2, err2 = course_details(low)
-    if not err2 and det2 and det2 != "Course not found.":
+    if not err2 and det2 and det2 != "Course not found."):
         return reply(det2)
 
-    # Fallback
     return reply("Hi! Reply with 'career' to browse careers, 'course' to browse courses, or 'clarify: <question>' to ask anything.")
 
 if __name__ == "__main__":

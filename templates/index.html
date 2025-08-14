@@ -1,49 +1,53 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
   <title>Career Chatbot</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 720px; margin: auto; }
+    body { font-family: Arial, sans-serif; padding: 24px; max-width: 720px; margin: auto; }
+    h1 { margin-bottom: 8px; }
+    p { color: #444; }
     #response { margin-top: 16px; white-space: pre-wrap; }
-    #options { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
-    input[type=text] { width: 70%; padding: 8px; }
-    button { padding: 8px 12px; cursor: pointer; }
+    #options { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
+    button.primary { padding: 10px 14px; border: none; border-radius: 8px; cursor: pointer; background: #2563eb; color: white; }
+    button.secondary { padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #f7f7f7; }
     .chip { border: 1px solid #ccc; border-radius: 16px; padding: 6px 10px; background: #f7f7f7; }
-    .row { margin-top: 8px; }
   </style>
 </head>
 <body>
   <h1>Career Chatbot</h1>
-  <p>Type <b>career</b> or <b>course</b> to browse, or <b>clarify: &lt;your question&gt;</b> to ask anything.</p>
+  <p>Select an option below. On WhatsApp, type: <b>career</b>, <b>course</b>, or <b>clarify: &lt;your question&gt;</b>.</p>
 
-  <div class="row">
-    <input type="text" id="user_input" placeholder="Type your message here">
-    <button onclick="sendMessage()">Send</button>
-    <button onclick="sendMessage('career')">Browse Careers</button>
-    <button onclick="sendMessage('course')">Browse Courses</button>
-    <button onclick="askClarify()">Clarify</button>
+  <div id="top-actions">
+    <button class="primary" onclick="browse('career')">Browse Careers</button>
+    <button class="primary" onclick="browse('course')">Browse Courses</button>
+    <button class="secondary" onclick="clarify()">Clarify</button>
   </div>
 
   <div id="response"></div>
   <div id="options"></div>
 
   <script>
-    async function sendMessage(message=null) {
-      const inputEl = document.getElementById('user_input');
-      const userInput = (message || inputEl.value || '').trim();
-      if (!userInput) return;
-
+    async function postChat(message) {
       const res = await fetch('/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: 'webuser-1', message: userInput })
+        body: JSON.stringify({ user_id: 'webuser-1', message })
       });
-
-      const data = await res.json();
+      return res.json();
+    }
+    async function browse(kind) {
+      const data = await postChat(kind === 'career' ? 'career' : 'course');
+      render(data);
+    }
+    async function clarify() {
+      const q = prompt('Type your question:');
+      if (!q) return;
+      const data = await postChat('clarify: ' + q.trim());
+      render(data);
+    }
+    function render(data) {
       document.getElementById('response').innerText = data.response || '';
-
       const optionsDiv = document.getElementById('options');
       optionsDiv.innerHTML = '';
       if (Array.isArray(data.options)) {
@@ -51,22 +55,15 @@
           const btn = document.createElement('button');
           btn.className = 'chip';
           btn.innerText = opt;
-          btn.onclick = () => sendMessage(opt);
+          btn.onclick = () => selectOption(opt);
           optionsDiv.appendChild(btn);
         });
       }
-      if (!message) inputEl.value = '';
     }
-
-    function askClarify() {
-      const q = prompt("Type your question:");
-      if (!q) return;
-      sendMessage("clarify: " + q);
+    async function selectOption(name) {
+      const data = await postChat(name);
+      render(data);
     }
-
-    document.getElementById('user_input').addEventListener('keydown', function(e){
-      if (e.key === 'Enter') sendMessage();
-    });
   </script>
 </body>
 </html>
