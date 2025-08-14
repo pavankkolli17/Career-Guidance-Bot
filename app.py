@@ -4,15 +4,25 @@ from utils.course_search import get_all_courses, get_course_details
 
 app = Flask(__name__)
 
-# This will hold temporary state for user sessions (simple approach)
+# Temporary session storage for users
 user_states = {}
 
-@app.route('/chat', methods=['GET', 'POST'])
-def chat():
-    user_id = request.json.get('user_id', 'default')
-    user_input = request.json.get('message', '').strip().lower()
+# Home route for browser testing
+@app.route('/', methods=['GET'])
+def home():
+    return "Chatbot is running. Send POST requests to /chat to interact."
 
-    # If no state exists for this user, create one
+# Chatbot endpoint
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    if not data:
+        return jsonify({"response": "Please send JSON with 'user_id' and 'message'"}), 400
+
+    user_id = data.get('user_id', 'default')
+    user_input = data.get('message', '').strip().lower()
+
+    # Initialize user state if not present
     if user_id not in user_states:
         user_states[user_id] = {"mode": None}
 
@@ -23,14 +33,18 @@ def chat():
         if "career" in user_input:
             state["mode"] = "career_list"
             careers = get_all_careers()
-            return jsonify({"response": "Here are available careers. Please type the career name to know more:",
-                            "options": careers})
+            return jsonify({
+                "response": "Here are available careers. Please type the career name to know more:",
+                "options": careers
+            })
 
         elif "course" in user_input:
             state["mode"] = "course_list"
             courses = get_all_courses()
-            return jsonify({"response": "Here are available courses. Please type the course name to know more:",
-                            "options": courses})
+            return jsonify({
+                "response": "Here are available courses. Please type the course name to know more:",
+                "options": courses
+            })
 
         else:
             return jsonify({"response": "Please start by typing 'career' or 'course'."})
@@ -51,4 +65,4 @@ def chat():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.0', port=5000, debug=True)
