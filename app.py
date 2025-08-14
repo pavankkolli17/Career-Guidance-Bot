@@ -119,7 +119,7 @@ def twilio_webhook():
     if not err and det and det != "Career not found.":
         return reply(det)
     det2, err2 = course_details(low)
-    if not err2 and det2 and det2 != "Course not found."):
+    if not err2 and det2 and det2 != "Course not found.":
         return reply(det2)
 
     return reply("Hi! Reply with 'career' to browse careers, 'course' to browse courses, or 'clarify: <question>' to ask anything.")
