@@ -2,6 +2,5 @@ Flask>=2.3.2
 pandas>=2.1.1
 gunicorn
 openai
-python==3.13.4
 requests
 numpy
