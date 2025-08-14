@@ -1,9 +1,12 @@
 import pandas as pd
 
-def get_courses(query):
+def get_all_courses():
     df = pd.read_csv('data/courses.csv')
-    results = []
+    return df['course'].tolist()
+
+def get_course_details(course_name):
+    df = pd.read_csv('data/courses.csv')
     for _, row in df.iterrows():
-        if row['career'].lower() in query or row['course'].lower() in query:
-            results.append(f"{row['course']}: {row['description']}")
-    return " | ".join(results) if results else "No courses found."
+        if row['course'].strip().lower() == course_name.strip().lower():
+            return f"{row['course']}: {row['description']}"
+    return "Course not found."
