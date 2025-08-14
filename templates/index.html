@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head><title>Career Guidance Bot</title></head>
+<head>
+    <title>Career Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #response { margin-top: 20px; white-space: pre-wrap; }
+        input { width: 300px; padding: 5px; }
+        button { padding: 5px 10px; }
+    </style>
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('user_input').value;
+            const responseBox = document.getElementById('response');
+            if (!userInput) return;
+            const res = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: 'user1', message: userInput })
+            });
+            const data = await res.json();
+            let text = data.response;
+            if (data.options) {
+                text += "\n\nOptions:\n" + data.options.join(", ");
+            }
+            responseBox.innerText = text;
+            document.getElementById('user_input').value = '';
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("user_input")
+                    .addEventListener("keydown", function(e) {
+                if (e.key === "Enter") sendMessage();
+            });
+        });
+    </script>
+</head>
 <body>
-<h2>Career Guidance Chatbot</h2>
-<form method="POST">
-<input type="text" name="user_input" placeholder="Ask about careers, courses, pathways" style="width:300px">
-<button type="submit">Ask</button>
-</form>
-{% if response %}<p><b>Response:</b> {{ response }}</p>{% endif %}
+    <h1>Career Chatbot</h1>
+    <p>Type "career" to explore careers or "course" to explore courses.</p>
+    <input type="text" id="user_input" placeholder="Type your message here">
+    <button onclick="sendMessage()">Send</button>
+    <div id="response"></div>
 </body>
 </html>

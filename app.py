@@ -1,18 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from utils.career_search import get_all_careers, get_career_details
 from utils.course_search import get_all_courses, get_course_details
 
 app = Flask(__name__)
 
-# Temporary session storage for users
 user_states = {}
 
-# Home route for browser testing
 @app.route('/', methods=['GET'])
 def home():
-    return "Chatbot is running. Send POST requests to /chat to interact."
+    return render_template('index.html')
 
-# Chatbot endpoint
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
@@ -22,13 +19,11 @@ def chat():
     user_id = data.get('user_id', 'default')
     user_input = data.get('message', '').strip().lower()
 
-    # Initialize user state if not present
     if user_id not in user_states:
         user_states[user_id] = {"mode": None}
 
     state = user_states[user_id]
 
-    # Step 1: Detect if user is asking about careers or courses
     if state["mode"] is None:
         if "career" in user_input:
             state["mode"] = "career_list"
@@ -37,7 +32,6 @@ def chat():
                 "response": "Here are available careers. Please type the career name to know more:",
                 "options": careers
             })
-
         elif "course" in user_input:
             state["mode"] = "course_list"
             courses = get_all_courses()
@@ -45,24 +39,18 @@ def chat():
                 "response": "Here are available courses. Please type the course name to know more:",
                 "options": courses
             })
-
         else:
             return jsonify({"response": "Please start by typing 'career' or 'course'."})
-
-    # Step 2: If user has chosen a career
     elif state["mode"] == "career_list":
         details = get_career_details(user_input)
-        state["mode"] = None  # Reset state
+        state["mode"] = None
         return jsonify({"response": details})
-
-    # Step 3: If user has chosen a course
     elif state["mode"] == "course_list":
         details = get_course_details(user_input)
-        state["mode"] = None  # Reset state
+        state["mode"] = None
         return jsonify({"response": details})
 
     return jsonify({"response": "Something went wrong."})
 
-
 if __name__ == '__main__':
-    app.run(host='127.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
