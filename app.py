@@ -29,14 +29,14 @@ def chat():
             state["mode"] = "career_list"
             careers = get_all_careers()
             return jsonify({
-                "response": "Here are available careers. Please type the career name to know more:",
+                "response": "Here are available careers. Please click one to know more:",
                 "options": careers
             })
         elif "course" in user_input:
             state["mode"] = "course_list"
             courses = get_all_courses()
             return jsonify({
-                "response": "Here are available courses. Please type the course name to know more:",
+                "response": "Here are available courses. Please click one to know more:",
                 "options": courses
             })
         else:
