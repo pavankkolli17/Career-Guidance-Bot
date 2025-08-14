@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from career_search import get_all_careers, get_career_details
-from course_search import get_all_courses, get_course_details
+from utils.career_search import get_all_careers, get_career_details
+from utils.course_search import get_all_courses, get_course_details
 
 app = Flask(__name__)
 
