@@ -1,4 +1,4 @@
-course,description
-Mechanical Engineering,Study of mechanics, machines, and design principles.
-Medicine,Study and practice of diagnosing and treating illnesses.
-Education,Study of teaching methods and pedagogy.
+course,description,skills,subjects
+B.Tech Civil Engineering,4-year undergraduate program in civil engineering.,Statics; CAD,Math; Physics
+B.Tech Mechanical Engineering,4-year undergraduate program in mechanical engineering.,Thermodynamics; Manufacturing,Math; Physics
+B.Tech Computer Science,4-year undergraduate program in computing.,Programming; Data Structures & Algorithms,Math; Computer Science

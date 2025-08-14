@@ -1,4 +1,4 @@
-"career,description"
-"Civil Engineer,builds"
-"Mechanical Engineer,automobiles"
-"Software Engineer,Programing"
+career,description,skills,subjects
+Civil Engineer,Designs and constructs infrastructure like buildings and bridges.,Structural analysis; Project management,Math; Physics
+Mechanical Engineer,Works with mechanical systems and machines.,Thermodynamics; CAD,Math; Physics
+Software Engineer,Develops software applications and systems.,Programming; Problem solving,Math; Computer Science

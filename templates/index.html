@@ -1,59 +1,72 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Career Chatbot</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        #response { margin-top: 20px; white-space: pre-wrap; }
-        input { width: 300px; padding: 5px; }
-        button { padding: 5px 10px; margin: 2px; }
-        .option-btn { display: block; margin-top: 5px; }
-    </style>
+  <meta charset="utf-8" />
+  <title>Career Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 720px; margin: auto; }
+    #response { margin-top: 16px; white-space: pre-wrap; }
+    #options { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+    input[type=text] { width: 70%; padding: 8px; }
+    button { padding: 8px 12px; cursor: pointer; }
+    .chip { border: 1px solid #ccc; border-radius: 16px; padding: 6px 10px; background: #f7f7f7; }
+    .row { margin-top: 8px; }
+  </style>
 </head>
 <body>
-    <h1>Career Chatbot</h1>
-    <p>Type "career" to explore careers or "course" to explore courses.</p>
+  <h1>Career Chatbot</h1>
+  <p>Type <b>career</b> or <b>course</b> to browse, or <b>clarify: &lt;your question&gt;</b> to ask anything.</p>
+
+  <div class="row">
     <input type="text" id="user_input" placeholder="Type your message here">
     <button onclick="sendMessage()">Send</button>
-    <div id="response"></div>
-    <div id="options"></div>
+    <button onclick="sendMessage('career')">Browse Careers</button>
+    <button onclick="sendMessage('course')">Browse Courses</button>
+    <button onclick="askClarify()">Clarify</button>
+  </div>
 
-    <script>
-        async function sendMessage(message=null) {
-            const userInput = message || document.getElementById('user_input').value;
-            if (!userInput) return;
+  <div id="response"></div>
+  <div id="options"></div>
 
-            const res = await fetch('/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_id: 'user1', message: userInput })
-            });
+  <script>
+    async function sendMessage(message=null) {
+      const inputEl = document.getElementById('user_input');
+      const userInput = (message || inputEl.value || '').trim();
+      if (!userInput) return;
 
-            const data = await res.json();
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: 'webuser-1', message: userInput })
+      });
 
-            // Display main response
-            document.getElementById('response').innerText = data.response;
+      const data = await res.json();
+      document.getElementById('response').innerText = data.response || '';
 
-            // Display clickable options if any
-            const optionsDiv = document.getElementById('options');
-            optionsDiv.innerHTML = '';
-            if (data.options) {
-                data.options.forEach(option => {
-                    const btn = document.createElement('button');
-                    btn.innerText = option;
-                    btn.className = 'option-btn';
-                    btn.onclick = () => sendMessage(option);
-                    optionsDiv.appendChild(btn);
-                });
-            }
-
-            if (!message) document.getElementById('user_input').value = '';
-        }
-
-        document.getElementById("user_input")
-                .addEventListener("keydown", function(e) {
-            if (e.key === "Enter") sendMessage();
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      if (Array.isArray(data.options)) {
+        data.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'chip';
+          btn.innerText = opt;
+          btn.onclick = () => sendMessage(opt);
+          optionsDiv.appendChild(btn);
         });
-    </script>
+      }
+      if (!message) inputEl.value = '';
+    }
+
+    function askClarify() {
+      const q = prompt("Type your question:");
+      if (!q) return;
+      sendMessage("clarify: " + q);
+    }
+
+    document.getElementById('user_input').addEventListener('keydown', function(e){
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
 </body>
 </html>
