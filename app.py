@@ -7,7 +7,7 @@ app = Flask(__name__)
 # This will hold temporary state for user sessions (simple approach)
 user_states = {}
 
-@app.route('/', methods=['POST'])
+@app.route('/chat', methods=['GET', 'POST'])
 def chat():
     user_id = request.json.get('user_id', 'default')
     user_input = request.json.get('message', '').strip().lower()
