@@ -1,2 +1,5 @@
-Flask==2.3.2
-pandas==2.1.1
+Flask
+pandas
+gunicorn
+openai
+python
