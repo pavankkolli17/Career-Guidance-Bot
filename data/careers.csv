@@ -1,4 +1,52 @@
 career,description,skills,subjects
-Civil Engineer,Designs and constructs infrastructure like buildings and bridges.,Structural analysis; Project management,Math; Physics
-Mechanical Engineer,Works with mechanical systems and machines.,Thermodynamics; CAD,Math; Physics
-Software Engineer,Develops software applications and systems.,Programming; Problem solving,Math; Computer Science
+Software Engineer,Builds and maintains software applications and systems.,Programming; Problem solving; Git,Math; Computer Science
+Data Scientist,Analyzes data to build insights and predictive models.,Statistics; Machine learning; Python,Math; Statistics; Computer Science
+Civil Engineer,Designs and constructs infrastructure like roads and buildings.,Structural analysis; Project management,Math; Physics
+Mechanical Engineer,"Works on machines, engines, and manufacturing systems.",Thermodynamics; CAD; Mechanics,Math; Physics
+Electrical Engineer,Designs electrical systems and power networks.,Circuit design; Power systems,Math; Physics
+Electronics Engineer,Builds and tests electronic devices and embedded systems.,Embedded systems; PCB design,Math; Physics; Electronics
+AI/ML Engineer,Deploys machine-learning systems at scale.,Model serving; MLOps; Python,Math; Statistics; Computer Science
+Cloud Engineer,Designs cloud infrastructure and services.,Cloud architecture; Linux; Networking,Math; Computer Science
+Cybersecurity Analyst,Protects systems from threats and vulnerabilities.,Network security; Threat analysis,Computer Science; Math
+Product Manager,Defines product vision and roadmap; works with cross‑functional teams.,Roadmapping; User research; Analytics,Business Studies; Computer Science
+Business Analyst,Translates business needs into technical requirements.,Requirements; SQL; Communication,Math; Business Studies
+Chartered Accountant,"Handles auditing, taxation, and financial reporting.",Accounting; Taxation; Auditing,Accountancy; Economics; Math
+Investment Banker,"Advises on mergers, acquisitions, and capital raising.",Valuation; Financial modeling,Economics; Math; Accountancy
+Financial Analyst,Builds financial models and evaluates investments.,Excel; Valuation; Reporting,Math; Economics; Accountancy
+Marketing Manager,Plans and executes marketing campaigns.,Market research; Branding; Analytics,Business Studies; Economics
+Sales Manager,Leads sales teams to achieve revenue targets.,Negotiation; CRM; Planning,Business Studies; Economics
+Operations Manager,"Optimizes processes, quality, and supply chains.",Process design; Analytics; Excel,Business Studies; Math
+HR Manager,"Handles hiring, culture, and policies.",Recruiting; Communication; Labor laws,Business Studies
+Lawyer,Advises and represents clients on legal matters.,Legal research; Drafting; Advocacy,Political Science; English
+Corporate Lawyer,"Specializes in company law, contracts, and compliance.",Contract drafting; Compliance,Political Science; English; Commerce
+Doctor (Physician),Diagnoses and treats illnesses.,Clinical reasoning; Patient care,Biology; Chemistry; Physics
+Surgeon,Performs surgeries and post‑operative care.,Surgical skills; Decision‑making,Biology; Chemistry; Physics
+Dentist,Diagnoses and treats dental issues.,Dental procedures; Patient care,Biology; Chemistry
+Pharmacist,Dispenses medicines and advises on usage.,Pharmacology; Regulations,Biology; Chemistry
+Nurse,Provides patient care and coordination.,Clinical care; Empathy,Biology
+Physiotherapist,Treats injuries with movement/therapy plans.,Rehabilitation; Anatomy,Biology
+Medical Lab Technologist,Runs diagnostic lab tests.,Lab techniques; Quality control,Biology; Chemistry
+Psychologist,Studies behavior and mental processes; counseling.,Assessment; Counseling,Psychology; Biology
+Teacher (School),Teaches a subject to school students.,Instruction; Assessment; Empathy,Any (subject-specific)
+Professor,Teaches at college; does research and mentoring.,Research; Teaching; Publishing,Subject Specialization
+Architect,Designs buildings and spaces.,Design; Drafting; Codes,Math; Drawing
+Interior Designer,Designs interior environments.,Space planning; Materials,Drawing; Art
+Graphic Designer,Creates visual communication assets.,Adobe tools; Typography,Art; Design
+UX/UI Designer,Designs user experiences and interfaces.,Prototyping; Research,Design; Computer Science
+Product Designer,Designs products from concept to production.,CAD; Prototyping; Research,Design; Physics
+Fashion Designer,Designs clothing and accessories.,Illustration; Pattern making,Art; Design
+Journalist,Reports and writes news stories.,Reporting; Editing; Ethics,English; Social Studies
+Content Writer,"Writes blogs, copy, and scripts.",Writing; Research; SEO,English
+Digital Marketer,Runs digital campaigns and analytics.,SEO; Ads; Social media,Business Studies; Economics
+Data Engineer,Builds data pipelines and warehouses.,ETL; SQL; Distributed systems,Math; Computer Science
+DevOps Engineer,Automates build/deploy/monitoring.,CI/CD; Linux; Scripting,Computer Science
+Web Developer,Builds websites and web apps.,HTML/CSS/JS; Frameworks,Computer Science
+Mobile App Developer,Builds Android/iOS apps.,Kotlin/Swift; UI frameworks,Computer Science
+Game Developer,"Creates video games (engine, gameplay).",Game engines; Graphics,Math; Computer Science; Art
+Animator,Creates 2D/3D animations.,Storyboarding; 3D tools,Art; Design
+Film Editor,Edits video content for film/TV/digital.,Editing software; Story sense,Art; Media Studies
+Photographer,Shoots and edits photos for clients/publications.,Lighting; Composition,Art
+Chef,Prepares menus and manages kitchen operations.,Culinary skills; Hygiene,Home Science
+Hotel Manager,Runs hotel operations and guest services.,Operations; Customer service,Business Studies
+Airline Pilot,Operates aircraft safely.,Flight operations; Navigation,Math; Physics
+Flight Attendant,Ensures passenger safety and service.,Safety; Communication,English; Hospitality

@@ -1,4 +1,50 @@
 course,description,skills,subjects
-B.Tech Civil Engineering,4-year undergraduate program in civil engineering.,Statics; CAD,Math; Physics
-B.Tech Mechanical Engineering,4-year undergraduate program in mechanical engineering.,Thermodynamics; Manufacturing,Math; Physics
-B.Tech Computer Science,4-year undergraduate program in computing.,Programming; Data Structures & Algorithms,Math; Computer Science
+B.Tech Computer Science,Undergraduate in computing and software systems.,Programming; Data Structures & Algorithms,Math; Computer Science
+B.Tech Information Technology,Undergraduate in IT infrastructure and apps.,Networking; Databases,Math; Computer Science
+B.Tech Artificial Intelligence,Focus on ML/AI systems and deployment.,Machine learning; Python,Math; Statistics; Computer Science
+B.Tech Data Science,"Data engineering, analytics, and modeling.",Data analysis; ML; SQL,Math; Statistics; Computer Science
+B.Tech Electronics & Communication,"Circuits, signals, and communication systems.",Circuit design; VLSI,Math; Physics; Electronics
+B.Tech Electrical Engineering,Power systems and electrical machines.,Power systems; Control,Math; Physics
+B.Tech Mechanical Engineering,"Machines, manufacturing, and design.",Thermodynamics; CAD,Math; Physics
+B.Tech Civil Engineering,"Structures, construction, and transportation.",Structural analysis; Surveying,Math; Physics
+B.Tech Chemical Engineering,Process design and operations.,Process design; Thermo,Math; Chemistry; Physics
+B.Tech Biotechnology,Bioprocesses and molecular technologies.,Bioprocess; Lab techniques,Biology; Chemistry
+B.Arch,Architecture and building design.,Design; Drafting,Math; Drawing
+B.Des (Design),Product/UX/Communication design streams.,Prototyping; Research,Design; Art
+BCA,Applications-oriented computing degree.,Programming; Databases,Math; Computer Science
+B.Sc Computer Science,Foundational CS theory and practice.,Programming; Algorithms,Math; Computer Science
+B.Sc Data Science,Statistics + computing for data careers.,Statistics; ML,Math; Statistics; Computer Science
+B.Sc IT,Information technology fundamentals.,Networking; Systems,Math; Computer Science
+B.Com,Commerce and finance foundations.,Accounting; Economics,Accountancy; Economics; Math
+BBA,Business administration and management.,Marketing; Finance; Ops,Business Studies; Economics
+BA Economics,"Economic theory, data, and policy.",Micro/Macro; Econometrics,Math; Economics
+BA English,"Literature, writing, and communication.",Critical reading; Writing,English
+BA Psychology,"Human behavior, cognition, counseling basics.",Research methods; Counseling,Psychology; Biology
+B.Sc Physics,"Mechanics, EM, quantum, labs.",Problem solving; Labs,Math; Physics
+B.Sc Chemistry,"Organic, inorganic, physical chemistry.",Lab techniques; Analysis,Chemistry; Math
+B.Sc Mathematics,Pure and applied mathematics.,Proofs; Modeling,Math
+MBBS,Medicine and surgery undergraduate program.,Clinical skills; Diagnostics,Biology; Chemistry; Physics
+BDS,Dental surgery undergraduate program.,Dental procedures; Anatomy,Biology; Chemistry
+BAMS,Ayurvedic medical sciences.,Ayurveda; Clinical basics,Biology; Chemistry
+BHMS,Homeopathic medical sciences.,Homeopathy; Case taking,Biology; Chemistry
+BPT (Physiotherapy),Physiotherapy and rehabilitation.,Therapy planning; Anatomy,Biology
+B.Pharm,Pharmaceutical sciences and practice.,Pharmacology; Dispensing,Biology; Chemistry
+B.Sc Nursing,Nursing and patient care.,Clinical care; Coordination,Biology
+BA LLB (Integrated),Law with arts foundation.,Legal reasoning; Drafting,English; Political Science
+BBA LLB (Integrated),Law with business foundation.,Corporate law; Contracts,English; Commerce
+BJMC (Journalism & Mass Comm),"Media writing, reporting, production.",Reporting; Editing,English; Social Studies
+BHM (Hotel Management),Hospitality operations and services.,Operations; F&B,Business Studies
+B.Sc Agriculture,"Agronomy, soil, and agri‑tech.",Crop science; Extension,Biology; Chemistry
+B.Sc Biotechnology,Biotech theory and labs.,Molecular bio; Lab,Biology; Chemistry
+B.Sc Microbiology,Microbes and lab analysis.,Micro techniques; QA,Biology; Chemistry
+BFA (Fine Arts),"Drawing, painting, sculpture, applied arts.",Art practice; History,Art
+B.Ed,Teacher preparation program.,Pedagogy; Assessment,Any (subject-specific)
+B.Stat / B.Sc Statistics,Statistics and data analysis.,Probability; Inference,Math; Statistics
+BMS (Management Studies),Management with analytics/projects.,Strategy; Analytics,Business Studies; Math
+B.Voc Software Development,Skill-focused software program.,Programming; Web dev,Math; Computer Science
+B.Voc Retail Management,Retail operations and merchandising.,Store ops; Sales,Business Studies
+Diploma in Computer Engineering,Polytechnic diploma in CE.,Programming; Networks,Math; Computer Science
+Diploma in Mechanical Engineering,Polytechnic diploma in ME.,Workshop; CAD,Math; Physics
+Diploma in Civil Engineering,Polytechnic diploma in CE.,Surveying; Drafting,Math; Physics
+B.Sc Nutrition & Dietetics,Food science and health.,Diet planning; Assessment,Biology; Chemistry
+B.Sc Forestry,Forest management and conservation.,Silviculture; GIS,Biology; Geography
